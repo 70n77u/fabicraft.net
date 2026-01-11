@@ -1,3 +1,7 @@
 :root {
   --sl-color-text-accent: #a78bfa;
 }
+
+.discord {
+    height: 32rem;
+}
