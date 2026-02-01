@@ -1,8 +1,15 @@
 ---
+import { Picture } from "astro:assets";
 import backgroundImage from "../assets/banner.png";
 ---
 
-<img class="splashBackgroundImage" src={backgroundImage.src} alt="" />
+<Picture
+    class="splashBackgroundImage"
+    src={backgroundImage}
+    formats={["avif", "webp"]}
+    fallbackFormat="jpg"
+    alt=""
+/>
 
 <style>
     .splashBackgroundImage {
