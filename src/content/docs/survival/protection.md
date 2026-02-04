@@ -22,6 +22,8 @@ Tontin rajat ilmestyvät nyt näkyviin merkaten, että tontti on luotu.
 
 ![claim-creation-2](../../../assets/docs/survival/protection/claim-creation-2.png)
 
+Tontin voi myös luoda komennolla `/claim <säde>`, kun kultalapio on kädessä. 
+
 ## Tontin koon muokkaus
 
 Tontin kokoa on mahdollista muuttaa myös jälkikäteen.
@@ -46,11 +48,16 @@ Seuraavaksi klikkaa palikkaa, johon haluat kulman siirtyvän. Valmis :)
 Kulmaa siirrettäessä kultalapion täytyy olla koko ajan kädessä tai valinta nollaantuu.
 :::
 
+Tontin laajentaminen katsottuun suuntaan onnistuu myös komennolla `/extendclaim <määrä>`.
+
 ## Tonttien poisto
 
 Voit poistaa tontin seisomalla sen sisällä ja kirjoittamalla komennon `/abandonclaim`.
 Mikäli haluat poistaa kaikki tonttisi, voit tehdä sen kirjoittamalla `/abandonallclaims`.
 
+:::note
+Omistettujen tonttien listan näkee komennolla `/claimslist`.
+:::
 ## Oikeuksien jakaminen
 
 Koska rakennuksesi on nyt suojattu muilta pelaajilta, vain sinä voit rakentaa siellä.
@@ -70,6 +77,7 @@ Saat poistettua pelaajalta oikeudet komennolla `/untrust <pelaaja>`.
 :::note 
 Voit määrittää kaikkien pelaajien oikeuksia pistämällä `#public` aikaisempien komentojen `<pelaaja>` kohtaan.
 :::
+
 ## Alitontit
 
 Tonttien sisälle on mahdollista luoda alitontteja, joiden avulla pelaajaoikeuksien säätäminen voidaan tehdä vielä tarkemmin.
@@ -94,24 +102,15 @@ Pääset takaisin tavalliseen tonttitilaan kirjoittamalla komennon `/claim`.
 ![subclaims-3](../../../assets/docs/survival/protection/subclaims-3.png)
 
 
-## Hallinnointi komennot
+## Ryhmät
 
-### Tontin luonti ja muokkaus
-Vaikka seuraavat komennot eivät tarvitse tontin kulmien klikkaamista, niihin silti tarvitaan kultalapio.
+Sen sijaan, että määrittää jokaisen pelaajan oikeudet yksitellen jokaiselle tontille, voit luoda ryhmiä joille voi määrittää oikeudet. Ryhmät ovat pelaaja kohteisia, mutta hallinointi oikeudelliset voivat nähdä ja käyttää tontin omistajan ryhmiä oikeuksien antamisessa.
 
-Tontin saa luotua pelaajan ympärille komennolla `/claim <säde>`. Koska tontin minimi koko on 5x5, pienin mahdollinen säde koko on 2.
-
-Tontin laajentaminen katsottuun suuntaan onnistuu  komennolla `/extendclaim <määrä>`.
-
-### Ryhmät
-
-Sen sijaan että määrittää jokaisen pelaajan oikeudet yksitellen jokaiselle tontille, voit luoda ryhmiä joille voi määrittää oikeudet. Ryhmät ovat yksityisiä ja näkyvät vain niiden luojille.? 
-
-Pelaajia saa lisättyä ryhmään komennolla `/group <ryhmä> add <pelaaja1> <pelaaja2>`. Komennolla saa lisättyä useamman pelaajan kerralla. Jos ryhmää ei ole olemassa, se luodaan automaattisesti.
+Pelaajia saa lisättyä ryhmään komennolla `/group <ryhmä> add <pelaaja1> <pelaaja2>`. Komennolla saa lisättyä yhden tai useamman pelaajan kerralla. Jos ryhmää ei ole olemassa, se luodaan automaattisesti.
 
 Ryhmän jäseniä saa tarkkailtua komennolla `/group <ryhmä>`.
 
-Jäseniä saa poistettua komennolla `/group <ryhmä> remove <pelaaja>`. Samalla tavallakuin lisätessä, voit poistaa useamman jäsenen kerralla.
+Jäseniä saa poistettua komennolla `/group <ryhmä> remove <pelaaja>`. Samalla tavalla kuin lisätessä, voit poistaa yhden tai useamman jäsenen kerralla.
 
 Ryhmän saa poistettua komennolla `/group <ryhmä> delete`.
 
@@ -119,31 +118,10 @@ Ryhmiä saa käytettyä kaikissa oikeus komennoissa korvaamalla `<pelaaja>` kohd
 
 Esim. `/accessortrust  @<ryhmä>`
 
-### Flag-arvot
-[//]: <> (flag-arvo on legacy käännös vaihtoehtoisesti tonttiasetukset, asetusarvot )
+Tontin oikeudellisia ryhmiä ja pelaajia saa tutkittua komennolla `/claiminfo`.
 
-Nähdäksesi ja säätääksesi kaikkia tontin flag-arvot, voit käyttää komentoa `/claimflags list`.
 
-KUVA LISTASTA
+## Porttikiellot
+Voit estää pelaajien tulemista tontille komenolla `/claimprivate`. Tällöin vain pelaajat joille on myönnetty oikeuksia voivat astua tontille.
 
-Listan arvoja voi klikata päälle(vihreä) tai pois(punainen).
-
-|Arvo|Kuvaus|Oletus|
-|---|---|--|
-|farm_block_break|Kerääminen?|Pois
-|farm_block_interact|Bonemeal?|Pois
-|farm_block_place|Istuttaminen?|Pois
-|break_vehicle|Veneiden ja kaivosvaunujen rikkominen|Pois
-|place_vehicle|ve|Pois
-|player_damage_entity||Päällä
-|monster_damage_terrain||Pois
-|explosion_damage_terrain||Pois
-|ender_pearl_teleport||Päällä
-|player_damage_persistent_entity|Ei despawnaavat nimetyt ja muut?|Pois
-|player_damage_player||Päällä
-Yksi
-
-ender_pearl_teleport,
-explosion_damage_entity
-
-break_hanging_entity, break_vehicle,
+vaihtoehtoisesti voit antaa tietylle pelaajatte porttikiellon komennolla `/claimban ban <pelaaja>`. Porttikiellon saaneet pelaajat näkyvät komennolla `/claimban list`. Pelaajia saa päästettyä takaisin tontille komennolla `/claimban unban <pelaaja>`.
